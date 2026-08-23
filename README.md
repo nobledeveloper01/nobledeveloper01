@@ -1,28 +1,89 @@
-# Hi there, I'm Marvellous Bamisaye! 👋
-Frontend Developer | Product Designer | UI/UX Enthusiast | Open Source Contributor
+# Marvellous Bamisaye
 
-Welcome to my GitHub profile! I'm a passionate frontend developer and product designer with a keen eye for UI/UX design. I love working on open source projects and contributing to the developer community. My goal is to create seamless and visually appealing user experiences through code and design.
+**Full-stack engineer and product designer.** I build the parts of a product people
+see — interfaces, flows, design systems — and the parts they should never have to
+think about: payment infrastructure, reconciliation, compliance.
 
-## 🔧 Technologies & Tools
-- Languages: HTML, CSS, JavaScript, TypeScript
-- Frameworks/Libraries: React, Vue.js
-- Design Tools: Figma, Adobe XD
-- Version Control: Git, GitHub, bitbucket
-- Other: Responsive Web Design, UI/UX Design, Web Accessibility
+Frontend in React and TypeScript. Backends in Go, C# and Python. Postgres underneath.
+Figma before any of it.
 
-## 🚀 Projects & Contributions
-- Check out my repository, open-source projects and contributions on GitHub.
-- Currently, I'm working on #Hacktoberfest 2023 which will last this october.
+[**Portfolio**](https://marvellous-bamisaye.vercel.app) · [LinkedIn](https://www.linkedin.com/in/marvellous-bamisaye-b7858524a) · [Twitter](https://twitter.com/MarvellousJosh2) · <eucharoviaventures@gmail.com>
 
+---
 
-## 🌱 I’m currently learning
-I'm always learning and exploring new technologies. Currently, I'm diving deeper into frontend frameworks like Next.js and .NET and improving my design skills with advanced prototyping tools.
+## What I'm building
 
-## 🤝 Let's Connect
-- LinkedIn: [Marvellous Bamisaye](www.linkedin.com/in/marvellous-bamisaye-b7858524a)
-- Portfolio: [Almost Done will be published very soon](link-to-your-portfolio)
-- Twitter: [@MarvellousJosh2](https://twitter.com/MarvellousJosh2)
-- Discord: [Nobledeveloper01](www.discord/nobledeveloper01_99553)
+Three services a fintech needs at the edges of its ledger. Each does one job and
+refuses to do the rest — **none of them can move money, by construction.**
 
+### [StatusHub](https://github.com/nobledeveloper01/StatusHub) — one receiver in front of every payment provider
+Verifies each provider's signature, normalises every payload into one canonical
+schema, and forwards with ordering, retries and replay. Raw bytes hit Postgres
+*before* anything tries to parse them, so a payload we can't understand is still a
+payload we didn't lose. An unrecognised status becomes `unknown` — never a guess.
 
-Let's collaborate and create something amazing together! Feel free to reach out for any open source projects, design collaborations, or just to say hi! 😊
+`Go` `Postgres` `TypeScript` · [statushub site →](https://nobledeveloper01.github.io/StatusHub/)
+
+### [ReconSync](https://github.com/nobledeveloper01/ReconSync) — finds the debits whose credit never arrived
+The system that failed cannot be the system that detects the failure. ReconSync
+watches both legs of a transfer and fires a signed **advisory** reversal webhook
+before the regulatory window closes. It checks its own blind spots first: if its
+ingest had a gap, a missing credit proves nothing.
+
+`Go` `Postgres` `TypeScript` · [reconsync site →](https://nobledeveloper01.github.io/ReconSync/)
+
+### [ComplyLayer](https://github.com/nobledeveloper01/ComplyLayer) — allow, flag or block in under 100ms
+Compliance rules written, tested and approved by the compliance officer — no
+engineer, no pull request, no deploy. Every verdict cites the regulation it
+implements and carries a message a customer can actually read. Division isn't in the
+rule grammar: a decision made six months ago has to reproduce exactly.
+
+`Python` `Django` `Postgres` · [complylayer site →](https://nobledeveloper01.github.io/ComplyLayer/)
+
+---
+
+## What I work on professionally
+
+| Domain | What that looked like |
+| --- | --- |
+| **Insurance & brokerage** | Customer and broker web apps, and the .NET APIs behind them |
+| **Payments & revenue assurance** | Collection, reconciliation and reporting for public-sector revenue |
+| **Edtech** | Reader, creator and admin dashboards, plus a mobile app |
+| **Property & rentals** | Listing and application flows, React front to .NET back |
+| **Design** | Design systems, prototyping and UX research — usually before a line of code |
+
+Contract and in-house, across Nigerian and US teams.
+
+---
+
+## Tech
+
+**Languages** · TypeScript · JavaScript · Go · C# · Python · SQL
+
+**Frontend** · React · Next.js · Vue · Tailwind · React Native
+
+**Backend** · .NET · Go · Django · Node / Express
+
+**Data** · Postgres · SQL Server · MongoDB · Redis
+
+**Infrastructure** · Docker · Kubernetes · Helm · Terraform · GitHub Actions
+
+**Design** · Figma · Adobe XD · design systems · accessibility · UX research
+
+---
+
+## How I like to work
+
+I write things down before I build them. The three projects above each carry a set of
+architecture decision records explaining not just what was chosen but what was
+rejected and why — because the reasoning is the part that's expensive to
+reconstruct, and the part that's gone once the person who had it leaves.
+
+I also try to make the failure modes explicit. A system that says `unknown` when it
+doesn't know is more useful than one that guesses confidently, and most of the
+interesting design work is in deciding what a service will refuse to do.
+
+---
+
+*Open to backend, full-stack and design-engineering work — and always happy to talk
+about fintech infrastructure.*
