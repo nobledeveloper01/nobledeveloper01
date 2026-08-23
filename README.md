@@ -12,7 +12,7 @@ Frontend in React and TypeScript. Backends in Go, C# and Python. Postgres undern
 
 ## What I'm building
 
-Three services a fintech needs at the edges of its ledger. Each does one job and
+Four services a fintech needs at the edges of its ledger. Each does one job and
 refuses to do the rest — **none of them can move money, by construction.**
 
 ### [StatusHub](https://github.com/nobledeveloper01/StatusHub) — one receiver in front of every payment provider
@@ -38,6 +38,16 @@ implements and carries a message a customer can actually read. Division isn't in
 rule grammar: a decision made six months ago has to reproduce exactly.
 
 `Python` `Django` `Postgres` · [complylayer site →](https://nobledeveloper01.github.io/ComplyLayer/)
+
+
+### [DisputeShield](https://github.com/nobledeveloper01/DisputeShield) — a script tag, and the clock starts
+A dispute-filing interface for your customers and an SLA-tracked, immutably audited
+case system for compliance — without building a ticketing product. The clock cannot
+be paused, because a pausable clock is an abusable one; the alert fires *before* the
+breach, not after; and there is no code path to a payment, enforced by a call-graph
+test rather than by convention.
+
+`Python` `Django` `Postgres` `Redis` · [disputeshield site →](https://nobledeveloper01.github.io/DisputeShield/)
 
 ---
 
