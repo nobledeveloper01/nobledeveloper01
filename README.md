@@ -1,11 +1,10 @@
 # Marvellous Bamisaye
 
-**Full-stack engineer and product designer.** I build the parts of a product people
-see — interfaces, flows, design systems — and the parts they should never have to
-think about: payment infrastructure, reconciliation, compliance.
+**Full-stack engineer.** I build the parts of a product people see — interfaces,
+flows, dashboards — and the parts they should never have to think about: payment
+infrastructure, reconciliation, compliance.
 
 Frontend in React and TypeScript. Backends in Go, C# and Python. Postgres underneath.
-Figma before any of it.
 
 [**Portfolio**](https://marvellous-bamisaye.vercel.app) · [LinkedIn](https://www.linkedin.com/in/marvellous-bamisaye-b7858524a) · [Twitter](https://twitter.com/MarvellousJosh2) · <eucharoviaventures@gmail.com>
 
@@ -50,7 +49,6 @@ rule grammar: a decision made six months ago has to reproduce exactly.
 | **Payments & revenue assurance** | Collection, reconciliation and reporting for public-sector revenue |
 | **Edtech** | Reader, creator and admin dashboards, plus a mobile app |
 | **Property & rentals** | Listing and application flows, React front to .NET back |
-| **Design** | Design systems, prototyping and UX research — usually before a line of code |
 
 Contract and in-house, across Nigerian and US teams.
 
@@ -68,8 +66,6 @@ Contract and in-house, across Nigerian and US teams.
 
 **Infrastructure** · Docker · Kubernetes · Helm · Terraform · GitHub Actions
 
-**Design** · Figma · Adobe XD · design systems · accessibility · UX research
-
 ---
 
 ## How I like to work
@@ -81,9 +77,9 @@ reconstruct, and the part that's gone once the person who had it leaves.
 
 I also try to make the failure modes explicit. A system that says `unknown` when it
 doesn't know is more useful than one that guesses confidently, and most of the
-interesting design work is in deciding what a service will refuse to do.
+interesting work is in deciding what a service will refuse to do.
 
 ---
 
-*Open to backend, full-stack and design-engineering work — and always happy to talk
-about fintech infrastructure.*
+*Open to backend and full-stack work — and always happy to talk about fintech
+infrastructure.*
