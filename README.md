@@ -76,11 +76,13 @@ Contract and in-house, across Nigerian and US teams.
 
 **Infrastructure** · Docker · Kubernetes · Helm · Terraform · GitHub Actions
 
+**Certified** · ISO/IEC 27001:2022 — Information Security Management Systems (ISMS) Foundation ([SandBP](https://sandbp.net), Aug 2026)
+
 ---
 
 ## How I like to work
 
-I write things down before I build them. The three projects above each carry a set of
+I write things down before I build them. The four projects above each carry a set of
 architecture decision records explaining not just what was chosen but what was
 rejected and why — because the reasoning is the part that's expensive to
 reconstruct, and the part that's gone once the person who had it leaves.
@@ -88,6 +90,12 @@ reconstruct, and the part that's gone once the person who had it leaves.
 I also try to make the failure modes explicit. A system that says `unknown` when it
 doesn't know is more useful than one that guesses confidently, and most of the
 interesting work is in deciding what a service will refuse to do.
+
+That is also why the ISO 27001 work matters to me rather than sitting on a shelf. The
+standard is largely about being able to *show* what happened — access control, audit
+logging, data classification, evidence retention — which is the same problem the
+hash-chained audit trails and row-level tenant isolation in these projects exist to
+solve.
 
 ---
 
