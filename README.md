@@ -6,7 +6,7 @@ infrastructure, reconciliation, compliance.
 
 Frontend in React and TypeScript. Backends in Go, C# and Python. Postgres underneath.
 
-[**Portfolio**](https://marvellous-bamisaye.vercel.app) · [LinkedIn](https://www.linkedin.com/in/marvellous-bamisaye-b7858524a) · [Twitter](https://twitter.com/MarvellousJosh2) · <eucharoviaventures@gmail.com>
+[**Portfolio**](https://marvellous-bamisaye.vercel.app) · [LinkedIn](https://www.linkedin.com/in/marvellous-bamisaye-b7858524a) · [Twitter](https://twitter.com/MarvellousJosh2) · <nobleconcepts22@gmail.com>
 
 ---
 
