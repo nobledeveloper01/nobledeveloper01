@@ -5,8 +5,9 @@ flows, dashboards — and the parts they should never have to think about: payme
 infrastructure, reconciliation, compliance.
 
 Frontend in React and TypeScript. Mobile in React Native and Flutter, down to
-Kotlin and Swift where the platform makes you. Backends in Go, C#, Python and
-Node. Postgres underneath.
+Kotlin and Swift where the platform makes you — and native Swift outright when
+the platform is the point. Backends in Go, C#, Python and Node. Postgres
+underneath.
 
 [**Portfolio**](https://marvellous-bamisaye.vercel.app) · [LinkedIn](https://www.linkedin.com/in/marvellous-bamisaye-b7858524a) · [Twitter](https://twitter.com/MarvellousJosh2) · <nobleconcepts22@gmail.com>
 
@@ -55,10 +56,12 @@ test rather than by convention.
 
 ## Mobile, and a different kind of hard
 
-Six products for the Nigerian market, none of them fintech. **Two are built**;
-the other four are specified to the same depth. Cross-platform from one codebase
-in every case, with functional parity as a hard requirement rather than an
-aspiration.
+Eight products for the Nigerian market, none of them fintech. Six are
+cross-platform from one codebase, with functional parity as a hard requirement
+rather than an aspiration — four of those are under way, two are specified to
+the same depth. **Two are native iOS, by decision**, each with the case for
+going native written down before the code; the first of them is built to its
+first gate.
 
 ### [Backhaul](https://github.com/nobledeveloper01/backhaul) — the truck, followed from wherever the load was agreed
 Almost every load in Nigerian road freight is agreed on WhatsApp. Backhaul does
@@ -91,7 +94,31 @@ need it most are the ones whose data ran out.
 
 `Dart` `Flutter` `Kotlin` `Swift` `Go` `Postgres` `SQLite/Drift`
 
-Both stop at the same wall, and it is the honest one: a **device day** on a
+### [Tender](https://github.com/nobledeveloper01/tender) — which note is this?
+Naira notes have no tactile marking. A blind Nigerian handling cash is trusting
+the other party, every time — and since the 2022 redesign there are eleven
+visually distinct notes carrying eight values. Every currency reader on the
+market covers the dollar, euro, pound, rupee and yen. None covers the naira.
+
+Tender is native Swift and iOS only, and the reason is written down before the
+code: its user never looks at the screen, so the accessibility layer is not a
+feature of the interface — it *is* the interface — and that layer is the
+platform's own. Point the camera; the app says which note, through VoiceOver,
+and pulses it through the haptic engine in a pattern different for every value,
+so the answer lands in a market too loud to hear a phone. It names the
+denomination and **never whether the note is genuine**; a word-list gate keeps
+that sentence out of the app, permanently.
+
+`Swift 6` `SwiftUI` `Core ML` `Core Haptics` `AVFoundation` — a domain package
+that imports nothing, not even Foundation; Xcode's accessibility audit on every
+screen at two text sizes; twelve build gates, each broken on purpose and watched
+to fire. No backend, and a gate that fails on any network path in the source.
+
+It stops at a different wall from the other two, and a better one: a week of
+photographing eleven banknotes, which is the one gate in this portfolio that
+waits on nobody but me.
+
+The cross-platform two stop at the same wall, and it is the honest one: a **device day** on a
 Transsion handset whose power management is undocumented, and a **native
 speaker** for the Hausa, Yorùbá and Igbo. Roughly 2,500 translated keys between
 them, written by somebody who speaks none of the three. Automated checks prove
@@ -121,7 +148,7 @@ Contract and in-house, across Nigerian and US teams.
 
 **Frontend** · React · Next.js · Vue · Tailwind
 
-**Mobile** · React Native · Flutter · Kotlin · Swift
+**Mobile** · React Native · Flutter · Swift / SwiftUI · Kotlin
 
 **Backend** · .NET · Go · Django · Node / Express
 
