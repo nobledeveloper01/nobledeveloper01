@@ -60,8 +60,8 @@ Eight products for the Nigerian market, none of them fintech. Six are
 cross-platform from one codebase, with functional parity as a hard requirement
 rather than an aspiration — four of those are under way, two are specified to
 the same depth. **Two are native iOS, by decision**, each with the case for
-going native written down before the code; the first of them is built to its
-first gate.
+going native written down before the code; both are built as far as a simulator
+reaches.
 
 ### [Backhaul](https://github.com/nobledeveloper01/backhaul) — the truck, followed from wherever the load was agreed
 Almost every load in Nigerian road freight is agreed on WhatsApp. Backhaul does
@@ -117,6 +117,38 @@ to fire. No backend, and a gate that fails on any network path in the source.
 It stops at a different wall from the other two, and a better one: a week of
 photographing eleven banknotes, which is the one gate in this portfolio that
 waits on nobody but me.
+
+### [Snag](https://github.com/nobledeveloper01/snag) — the flat, on the day it can still be written down
+A Lagos tenant pays two years' rent in advance plus a caution fee, and two years
+later argues about a cracked tile that was cracked on move-in day — with nothing
+to argue it with. Snag is the record made on the day it can still be made
+honestly: walk the flat room by room, photograph what is wrong and what is fine,
+seal it. **The evidence is the wedge, not the dispute.** The report is worth
+making for one tenant with no landlord on the other side.
+
+Every photograph is hashed the moment it is taken and stripped of everything but
+the picture. The report is sealed with a key that never leaves the phone — the
+Secure Enclave where there is one — and the sealed bundle carries the public
+key, so any phone with Snag, or a 200-line Python script written from the format
+document alone, says *unaltered since signing* or *altered*, and nothing in
+between. The landlord counter-signs on the tenant's phone; a move-out walk shows
+the move-in photograph beside the shutter and says what changed; a scan added
+months later is a second signature beside the first, touching nothing the first
+one signed. It says **evidence, never proof**, on its own last page, and a
+word-list gate keeps the stronger word out of every language it speaks — five
+of them, chosen in the app.
+
+`Swift 6` `SwiftUI` `CryptoKit` `ARKit` `RoomPlan` `ActivityKit` — a domain
+package that imports nothing, a canonical byte encoding asserted by a checked-in
+fixture, a verifier proved against every flipped byte of every file, and two
+verifiers that must agree. Ten build gates, each broken on purpose and watched
+to fire. No backend,
+by decision, and nothing sent — the one exception, the tenant's own iCloud, is
+opt-in and named in an ADR.
+
+What it waits on is a phone in a hand: the measured tier is ARKit and the
+scanned tier is LiDAR, both built and proved with a fixture room where the
+simulator has no sensor, and a tape measure in a real room is the gate.
 
 The cross-platform two stop at the same wall, and it is the honest one: a **device day** on a
 Transsion handset whose power management is undocumented, and a **native
