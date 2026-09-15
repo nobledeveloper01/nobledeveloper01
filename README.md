@@ -58,7 +58,7 @@ test rather than by convention.
 
 Eight products for the Nigerian market, none of them fintech. Six are
 cross-platform from one codebase, with functional parity as a hard requirement
-rather than an aspiration — four of those are under way, two are specified to
+rather than an aspiration — five of those are under way, one is specified to
 the same depth. **Two are native iOS, by decision**, each with the case for
 going native written down before the code; both are built as far as a simulator
 reaches.
@@ -80,6 +80,37 @@ rather than guessing, and says what would fix it.
 
 `TypeScript` `React Native` `Kotlin` `Swift` `C#/.NET 9` `Postgres` — one domain
 package, four faces, and a parity suite holding the C# server to it.
+
+### [Vitals](https://github.com/nobledeveloper01/vitals) — the previous page, wherever the patient is
+A Nigerian primary health record is a paper card, and the card stays where it
+was written. The hard problem is not the record; it is **merging two records
+that were both edited while neither could see the other** — two nurses on two
+tablets, offline for a week, both updating the same child. A last-writer-wins
+system silently destroys clinical data there, and here silent data loss is
+not a bug, it is a patient harm. Vitals treats observations as immutable facts
+that merge by union, never by overwrite; five merge invariants are
+property-tested over generated multi-device worlds, and the .NET replica runs
+the same merge in C#, held to the Dart by a 200-world parity fixture that
+caught the first real defect the same night.
+
+**Nothing clinical is computed.** A pulse is shown beside the published range
+and marked *outside range* by a comparison, never named. The antenatal danger
+signs are ten questions a nurse answers, each one, and nothing sums them — a
+test greps the domain for *score*, *risk*, *triage* so a future one fails
+before it is a regulated device. A pack is *on the list*, *not on the list*, or
+*the list cannot say*, and no language it speaks has the fourth word. The
+patient hands the record over on an animated QR built from a grant they chose
+— which sections, to whom, until when — and a fact outside the grant is never
+in the bytes. Every open of a record is a fact the patient sees on their own
+phone.
+
+`Dart` `Flutter` `C#/.NET 9` `Postgres` `ChaCha20-Poly1305` `Ed25519` — glass
+over a gradient mesh with a solid twin for a three-year-old tablet; five
+patient-face languages held complete by a gate; a domain that imports nothing;
+nine build gates, each broken on purpose and watched to fire; a signed audit
+export a supervisor verifies with nothing but Python. Built in one night to the
+edge of its hardware gates: mixed Android↔iOS transfer, the reference tablet,
+and a clinician reading every screen.
 
 ### [Grid](https://github.com/nobledeveloper01/grid) — the electricity bill you can actually dispute
 A Nigerian household disputing a bill has nothing to dispute it with: no reading
@@ -150,7 +181,7 @@ What it waits on is a phone in a hand: the measured tier is ARKit and the
 scanned tier is LiDAR, both built and proved with a fixture room where the
 simulator has no sensor, and a tape measure in a real room is the gate.
 
-The cross-platform two stop at the same wall, and it is the honest one: a **device day** on a
+The cross-platform three stop at the same wall, and it is the honest one: a **device day** on a
 Transsion handset whose power management is undocumented, and a **native
 speaker** for the Hausa, Yorùbá and Igbo. Roughly 2,500 translated keys between
 them, written by somebody who speaks none of the three. Automated checks prove
