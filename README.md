@@ -58,8 +58,7 @@ test rather than by convention.
 
 Eight products for the Nigerian market, none of them fintech. Six are
 cross-platform from one codebase, with functional parity as a hard requirement
-rather than an aspiration — five of those are under way, one is specified to
-the same depth. **Two are native iOS, by decision**, each with the case for
+rather than an aspiration — all six are under way. **Two are native iOS, by decision**, each with the case for
 going native written down before the code; both are built as far as a simulator
 reaches.
 
@@ -111,6 +110,34 @@ nine build gates, each broken on purpose and watched to fire; a signed audit
 export a supervisor verifies with nothing but Python. Built in one night to the
 edge of its hardware gates: mixed Android↔iOS transfer, the reference tablet,
 and a clinician reading every screen.
+
+### [Sentinel](https://github.com/nobledeveloper01/sentinel) — your circle, told; nobody else
+Community safety and emergency alerting, and the only product in this
+portfolio where a design error causes direct physical harm: a false alarm can
+start a mob, and a "suspicious person" report can get somebody killed. So the
+rules were written before the code, and they are the product. **Alerting your
+own circle is a right; alarming strangers is a privilege.** The personal path
+— the panic action, the safe-arrival journey that escalates even if the phone
+dies — is fast and unmetered because it reaches people who already trust you.
+The public path is earned: a report is visible to 500 m and widens only with
+independent corroboration, computed by a pure function that is property-tested
+over generated worlds so that **no single account, and no set of accounts
+sharing an independence signal, can carry an unverified report beyond 500 m.**
+
+Nothing about a person, ever — no names, no photographs, no plates, no
+*suspicious person* category, and a free-text screen that fails closed. No
+engagement — no counts, no badges, no analytics SDK. The server cannot read a
+location: alert and journey positions leave the phone sealed to the circle's
+keys, and a test hands the server everything it holds and proves it cannot
+open one. There is no red in the palette and no `danger` token, because a
+safety app that shouts manufactures fear.
+
+`TypeScript` `React Native` `C#/.NET 9` `Postgres` `X25519` `XChaCha20-Poly1305`
+— a domain that imports nothing, a C# replica held to it by a 200-world
+fixture, a copy gate that bans the words that would cross the line, and eight
+gates each broken on purpose and watched to fire. Started the same day as
+Vitals; what it waits on is a handset with a stopwatch, an outside reading of
+the abuse model, and thirty days in one city with zero harm.
 
 ### [Grid](https://github.com/nobledeveloper01/grid) — the electricity bill you can actually dispute
 A Nigerian household disputing a bill has nothing to dispute it with: no reading
@@ -181,14 +208,18 @@ What it waits on is a phone in a hand: the measured tier is ARKit and the
 scanned tier is LiDAR, both built and proved with a fixture room where the
 simulator has no sensor, and a tape measure in a real room is the gate.
 
-The cross-platform three stop at the same wall, and it is the honest one: a **device day** on a
+The cross-platform six stop at the same wall, and it is the honest one: a **device day** on a
 Transsion handset whose power management is undocumented, and a **native
 speaker** for the Hausa, Yorùbá and Igbo. Roughly 2,500 translated keys between
 them, written by somebody who speaks none of the three. Automated checks prove
 every string on every screen goes through the table; nothing proves one is right.
 Both projects list that as a release blocker rather than a nice-to-have.
 
-[All six, and why each stops where it does →](https://github.com/nobledeveloper01/backhaul#11-what-is-not-done-and-why)
+Every one of the eight is documented the same way — the problem, how it works,
+each layer, the correctness notes, what is open and why — so a reader who has
+read one knows where to look in the next.
+
+[Where each one stops, and why →](https://github.com/nobledeveloper01/backhaul#11-status)
 
 ---
 
