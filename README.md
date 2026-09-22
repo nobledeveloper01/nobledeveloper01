@@ -13,7 +13,50 @@ underneath.
 
 ---
 
-## What I'm building
+## Ledgerline — the diagram of your database, and a build that fails when it lies
+
+Every ER diagram tool starts from `CREATE TABLE` or a live connection, draws a
+picture, and stops. The picture is stale within a week, and the relationships a
+codebase really relies on — the `user_id` with no foreign key, the
+`owner_type`/`owner_id` pair, the join table only the ORM knows about — never
+appear on it.
+
+[**Ledgerline**](https://github.com/nobledeveloper01/ledgerline) starts from the
+other end: it reads the SQL an application *runs* and the schema it *declares*,
+reconciles them, and fails the build where they disagree. Every edge on the
+diagram is traceable to a file and a line. The model imports nothing, so every
+rule is pure data in and data out, and `make reach` fails if a rule exists that
+nothing calls — which it caught, once, on a feature that had a unit test and no
+command behind it.
+
+It reads ten places a schema can live and **never executes nine of them**: SQL
+migrations, Prisma, Rails `schema.rb`, Django, SQLAlchemy, TypeORM, Sequelize,
+Go struct tags, EF Core snapshots, and a live PostgreSQL when you hand it a URL.
+Running a repository's code to draw its diagram is a liability, not a feature.
+
+The part I would point at: it has been run against **six real public
+repositories** — Mastodon, Outline, NetBox, memos, Ory Kratos, Woodpecker CI —
+with every finding checked by hand against that repository's own schema file.
+Nine true findings on Mastodon; four true undeclared relationships on memos,
+each with the file and line of the join that relies on it. **One finding was
+false**, and it was the most useful result: Rails derives a foreign key's column
+by singularising a table name, and my inflector said *a word ending in `is` is
+already singular* — true of `analysis`, false of `custom_emojis`. Twenty-three
+bugs in the tool came out of those six runs, including a check that went green
+on a repository it had not read a single table of, and a false positive on
+Kratos that fired on every query in the repository because a multi-tenant join
+on a shared parent is not a missing relationship.
+
+`TypeScript` `Node 22` `libpg_query` `ELK` — a pure model package, 93 tests
+including three 200-world properties, two 200-table corpora (the same schema in
+PostgreSQL and in MySQL), and ten build gates, four of them broken on purpose
+every run.
+
+[What it found, and what it got wrong →](https://github.com/nobledeveloper01/ledgerline/blob/main/docs/GATE-PHASE-4.md)
+
+---
+
+## Fintech infrastructure
 
 Four services a fintech needs at the edges of its ledger. Each does one job and
 refuses to do the rest — **none of them can move money, by construction.**
@@ -78,7 +121,13 @@ estimate is ever rendered as a measurement — the arrival window refuses outrig
 rather than guessing, and says what would fix it.
 
 `TypeScript` `React Native` `Kotlin` `Swift` `C#/.NET 9` `Postgres` — one domain
-package, four faces, and a parity suite holding the C# server to it.
+package, four faces, and a parity suite holding the C# server to it. The last
+software gate closed recently: deviation and stall alerts now have a transport
+as well as a rule — an APNs sender that signs the ES256 provider token Apple
+wants and a Firebase one that trades a service-account assertion for an access
+token, with a dead device told apart from a refused send, because those call for
+opposite responses. What is left is a p8 key and a service-account JSON, and
+neither changes a line of code.
 
 ### [Vitals](https://github.com/nobledeveloper01/vitals) — the previous page, wherever the patient is
 A Nigerian primary health record is a paper card, and the card stays where it
@@ -138,6 +187,48 @@ fixture, a copy gate that bans the words that would cross the line, and eight
 gates each broken on purpose and watched to fire. Started the same day as
 Vitals; what it waits on is a handset with a stopwatch, an outside reading of
 the abuse model, and thirty days in one city with zero harm.
+
+### [Harvest](https://github.com/nobledeveloper01/harvest) — the clock on the crop, before the marketplace
+Nigeria loses somewhere between a third and a half of everything perishable it
+grows, in the days *after* harvest — not to drought or pests, but to a farmer
+who cannot see the spoilage clock, cannot see the market, cannot find the cold
+room twenty kilometres away, and therefore sells badly on day five in ignorance.
+
+**The spoilage clock is the wedge, not the marketplace.** A harvest is logged in
+thirty seconds by picture and voice; the app warns before the crop turns, and
+prices selling today against waiting and against a cold room, in naira. Only
+once a farmer wants one does it look for a verified buyer. Everything about the
+farmer's own crop runs on the phone, with no signal, for days.
+
+Ninety crop, unit, storage, outcome and ailment tiles are illustrations rather
+than photographs — flat shapes chosen so the three greens and the three peppers
+are told apart by silhouette and not only by colour. And the audio is honest
+about itself: all 1,182 clips say, in English, that they are placeholders and
+which language belongs there, because a stand-in that sounded like the product
+is how a missing feature ships.
+
+`Dart` `Flutter` `Postgres` — what it waits on is a dataset nobody has and five
+people who speak the languages.
+
+### [Keys](https://github.com/nobledeveloper01/keys) — the listing is real, or it is not listed
+Finding a place to rent in Lagos costs money before it costs rent. You see a
+listing, you call, you pay an inspection fee, and the property does not exist,
+or was let three months ago, or the person showing it has no authority to let
+it. For a meaningful number of operators **the fee is the entire business
+model**, because it is collected before the property is seen.
+
+> The scarce commodity is not listings. It is the belief that a listing is real.
+
+So the badge is not a stored flag somebody can set: it is **nine conditions
+computed on every read**, from evidence, and a listing that stops meeting them
+stops being checked. The phone number is the last thing exchanged rather than
+the first. And where v1.0 has no vendor, a person at Keys does the work by hand
+and **the product says so on the screen** rather than implying an automated
+check that does not exist.
+
+`TypeScript` `React Native` `Kotlin` `Swift` `C#/.NET 9` `Postgres` — what it
+waits on is a provider that can text a Nigerian handset, and somebody watching
+one receive a code.
 
 ### [Grid](https://github.com/nobledeveloper01/grid) — the electricity bill you can actually dispute
 A Nigerian household disputing a bill has nothing to dispute it with: no reading
@@ -215,9 +306,9 @@ them, written by somebody who speaks none of the three. Automated checks prove
 every string on every screen goes through the table; nothing proves one is right.
 Both projects list that as a release blocker rather than a nice-to-have.
 
-Every one of the eight is documented the same way — the problem, how it works,
-each layer, the correctness notes, what is open and why — so a reader who has
-read one knows where to look in the next.
+All eight are documented the same way — the problem, how it works, each layer,
+the correctness notes, what is open and why — so a reader who has read one knows
+where to look in the next.
 
 [Where each one stops, and why →](https://github.com/nobledeveloper01/backhaul#11-status)
 
