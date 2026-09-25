@@ -58,7 +58,7 @@ every run.
 
 ## Fintech infrastructure
 
-Four services a fintech needs at the edges of its ledger. Each does one job and
+Five services a fintech needs at the edges of its ledger. Each does one job and
 refuses to do the rest — **none of them can move money, by construction.**
 
 ### [StatusHub](https://github.com/nobledeveloper01/StatusHub) — one receiver in front of every payment provider
@@ -96,6 +96,32 @@ test rather than by convention.
 `Python` `Django` `Postgres` `Redis` · [disputeshield site →](https://nobledeveloper01.github.io/DisputeShield/)
 
 ---
+
+### [Notify Queue](https://github.com/nobledeveloper01/notify-queue) — delivered once, even when ten workers race for it
+
+Scheduling a notification is easy. Delivering it exactly once, while ten
+workers poll the same table, is where it goes wrong — and the failure is
+silent, because a duplicate SMS looks like a delivery, not a bug.
+
+Rows are claimed with `SELECT … FOR UPDATE SKIP LOCKED`, so workers never
+contend for the same job and a crashed worker's claim is recovered rather than
+stranded. The test suite proves it rather than asserting it: **500 jobs drained
+across ten polling workers, every one delivered exactly once**, and ten real
+worker applications racing for a single job producing exactly one provider
+call. There is a **control test alongside it** that implements the naive
+`SELECT` then `UPDATE` claim and demonstrates it handing one job to many
+workers, because a concurrency guarantee nobody has watched fail is a
+guarantee nobody has tested.
+
+Two hundred simultaneous cancel-versus-claim races, each resolving one way
+only. Retries back off exponentially and stop at six, after which the
+notification is set aside in a dead-letter queue rather than retried forever,
+and an operator can send it back one at a time or in batches. Rate limiting
+holds a recipient to ten an hour and makes the eleventh **wait rather than
+fail**. Webhooks go through an outbox, so no crash between "delivered" and
+"told you about it" loses the notice.
+
+Recipients, payloads and idempotency keys never reach a log line.
 
 ## Mobile, and a different kind of hard
 
