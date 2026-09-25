@@ -314,6 +314,69 @@ where to look in the next.
 
 ---
 
+## Built to a brief
+
+Two technical assessments, each with a real clock on it. Different discipline
+from a product you own: somebody else set the scope, and the interesting part
+is what you do with the hours once the stated requirement is met.
+
+### [Property Listings API](https://github.com/nobledeveloper01/property-listings-api) — the radius search that survives the table growing
+
+Asked for CRUD, a search filtered by type, price and bedrooms, and everything
+within X km of a point. The obvious way to do the last part is to measure the
+distance to every listing and keep the close ones, which means reading every
+row. It works until it does not.
+
+The location is a PostGIS `geography(Point,4326)` with a **GiST index**, and the
+query filters with `ST_DWithin`, which the planner answers from that index.
+`ST_Distance` appears only in the `SELECT`, to order what already survived the
+filter. Measured on 50,000 listings: **48ms against 399ms**, and the gap widens
+with the table. That measurement is why the migration is hand written — TypeORM
+will not emit a GiST index, so the one thing the feature depends on would have
+been silently missing from a generated one.
+
+Money is `bigint` kobo, never a float, and carries a period because ₦3.5m is a
+normal annual rent in Lekki and an absurd monthly one. Agents are a real table
+behind a foreign key, because `agent_id` pointing at nothing meant a listing
+could name an agent who never existed and a buyer had nobody to call. 18 unit
+and 29 integration tests, the integration ones against real PostGIS because the
+risk here is the SQL and a mocked repository would only prove my own
+assumptions. One of them recomputes every distance the API returns using a
+different formula and agrees to within half a percent.
+
+No authentication, deliberately, and the README says so plainly rather than
+shipping a token check that looks like security without being it.
+
+### [SR2Go Mobile](https://github.com/nobledeveloper01/sr2go-mobile) — signing in, and the part that comes after
+
+Asked for a login screen against a live API. A login screen on its own cannot
+show the difficult part, which is everything after: staying signed in, signing
+out cleanly, and behaving when the network does not.
+
+The first login measured **9.7 seconds** cold. Most clients give up at ten,
+which turns a slow success into a failure the user can do nothing about, so the
+timeout sits at thirty and the interface carries the wait instead — the button
+spins, disables itself so nobody submits twice, and says it can take a moment.
+Signing in does not navigate anywhere; the navigator mounts the half of the app
+that matches the session, so the signed in screens do not exist while you are
+signed out and no back gesture reaches them.
+
+The token lives in the Keychain, not AsyncStorage, because a JWT is a
+credential and AsyncStorage is a plain file. Both stores' requirements are
+built in rather than deferred: terms ticked deliberately at sign up, reachable
+privacy policy, and in-app account deletion, which Apple rejects apps for
+missing.
+
+Two things the review turned up. Searching the exported bundle found the test
+credentials sitting in it as plain text — `EXPO_PUBLIC_` variables are
+substituted at build time, so gitignoring `.env` protects the repository and
+does nothing for the binary. And measuring contrast rather than trusting my eye
+found the placeholder text at **2.28:1** against the dark background, well under
+the 4.5:1 AA asks for. The auth screens are light now, and the brand blue moved
+into the shapes behind the content where nothing has to be read on top of it.
+
+---
+
 ## What I work on professionally
 
 | Domain | What that looked like |
@@ -335,9 +398,9 @@ Contract and in-house, across Nigerian and US teams.
 
 **Mobile** · React Native · Flutter · Swift / SwiftUI · Kotlin
 
-**Backend** · .NET · Go · Django · Node / Express
+**Backend** · .NET · Go · Django · Node / Express · NestJS
 
-**Data** · Postgres · SQL Server · MongoDB · Redis
+**Data** · Postgres · PostGIS · SQL Server · MongoDB · Redis
 
 **Infrastructure** · Docker · Kubernetes · Helm · Terraform · GitHub Actions
 
