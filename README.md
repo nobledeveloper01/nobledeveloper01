@@ -56,6 +56,35 @@ every run.
 
 ---
 
+## Shipped, and in both stores
+
+Two products I own end to end — the React Native apps, the web front ends, the
+NestJS backends, the databases, the Azure deployment and both store
+submissions. Four live listings between them. Apple is the gate that actually
+rejects people, and I have been through it twice.
+
+### DocuIntelli AI — ask a document when it expires
+[App Store](https://apps.apple.com/us/app/docuintelli-ai/id6770092258) · [Google Play](https://play.google.com/store/apps/details?id=com.docuintelli.app) · [docuintelli.com](https://docuintelli.com)
+
+Documents that matter — licences, certificates, contracts — expire, and the
+cost of missing one is never the document. Most tools store a file well and say
+nothing about what is inside it or when it stops being valid. DocuIntelli does
+OCR on the scan, answers questions about the contents, and tells you before the
+date passes. Node on Azure Postgres, per-user isolation, JWT with role-based
+access, Stripe billing, and feature parity between the web app and the phone.
+
+### Affinity Echo — professional networking with your name off it
+[App Store](https://apps.apple.com/us/app/affinity-echo/id6762884859) · [Google Play](https://play.google.com/store/apps/details?id=com.okestra.affinityecho) · [app.affinityecho.com](https://app.affinityecho.com)
+
+Feeds, forums, ephemeral rooms, mentorship and referrals, with real-time
+messaging over a WebSocket gateway that keeps a room per user and a room per
+conversation. Every piece of user-generated content is judged against its full
+conversation context by an async moderation pipeline on BullMQ and Redis
+*before* it is surfaced, rather than reported after. Field-level PII encryption
+at rest, identity-reveal controls, and 1,244 tests across 72 suites.
+
+---
+
 ## Fintech infrastructure
 
 Five services a fintech needs at the edges of its ledger. Each does one job and
